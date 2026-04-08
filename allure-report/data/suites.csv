@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","3154","login sample","chromium","2026-03-20","passed","2026-03-20","","Practice\login.spec.js","",""
+"","1003","get by methods","chromium","2026-03-20","passed","2026-03-20","","getby.spec.js","",""
