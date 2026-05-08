@@ -1,5 +1,5 @@
 import {test} from "@playwright/test"
-test("", async ({browser})=>{
+test("",{tag:"@smoke"},  async ({browser})=>{
     //creating multiple tabs manually
     let context = await browser.newContext();
     let page = await context.newPage()

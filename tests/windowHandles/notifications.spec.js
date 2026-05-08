@@ -1,5 +1,5 @@
 import {test} from "@playwright/test"
-test("", async ({browser})=>{
+test("",{tag:"@smoke"}, async ({browser})=>{
     let context = await browser.newContext({permissions:["notifications", "microphone", "geolocation"]})
     let page = await context.newPage()
     await page.goto("https://demoapps.qspiders.com/ui/browserNot?sublist=0")

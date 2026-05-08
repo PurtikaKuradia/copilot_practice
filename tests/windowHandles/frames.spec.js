@@ -1,5 +1,5 @@
 import {expect, test} from "@playwright/test"
-test("frames", async({page})=>{
+test("frames", {tag:"@smoke"}, async({page})=>{
     await page.goto("https://ui.vision/demo/webtest/frames/")
 
     // total frames

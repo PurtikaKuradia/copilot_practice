@@ -1,5 +1,5 @@
 import {expect, test} from "@playwright/test"
-test("dialogs handling automatically by Playwright", async({page})=>{
+test("dialogs handling automatically by Playwright", {tag:"@regression"}, async({page})=>{
     await page.goto('https://testautomationpractice.blogspot.com/')
     await page.getByRole("button",{name:"Simple Alert"}).click()
     await page.getByRole("button", {name:"Confirmation Alert"}).click()
