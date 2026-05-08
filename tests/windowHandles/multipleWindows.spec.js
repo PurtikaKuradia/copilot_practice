@@ -9,4 +9,7 @@ test("switching windows",async ({browser})=>{
     await window2.locator('//button[text()="Add to Cart"]').click()
     let title1 = await page.title()
     await expect(await window2.title()).not.toBe(title1)
+    await window2.goBack();
+    await page.waitForTimeout(5000)
+    await window2.close();
 })

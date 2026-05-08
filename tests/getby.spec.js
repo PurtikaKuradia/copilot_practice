@@ -1,4 +1,6 @@
 import {test} from "@playwright/test"
+
+test.describe.configure({retries:2}); // to retry the particular test case
  test("get by methods", async({page})=>{
   //  await page.goto("https://demo.nopcommerce.com/login/")
     //getByLabel
@@ -17,11 +19,12 @@ import {test} from "@playwright/test"
   //  await page.getByTitle("Show products in category Camera & photo").first().click();
 
     //getByRole()
- //   await page.getByRole("link", {name:" Camera & photo "}).first().click();
+    await page.getByRole("link", {name:" Camera & photo "}).first().click();
+    
   
     //getByTestId
     await page.goto("https://www.saucedemo.com/")
     await page.getByTestId("password").fill("abcd")
 
  })
- test.describe.configure({retries:2}); // to retry the particular test case
+ 

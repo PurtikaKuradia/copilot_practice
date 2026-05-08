@@ -6,5 +6,76 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
-# Environment variables
+/allure-results/
+/allure-report/
+/screenshot/
+/uploadFiles/
+/downloadedFile/
+
+# Credentials and sensitive files
+/testData/credentials.json
+/testData/credentials.yaml
+/credentials.env
 testData/credentials.env
+.env
+.env.local
+.env.*.local
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+
+# OS specific files
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+*.lnk
+
+# Logs and debugging
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependencies
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Temporary files
+/temp/
+/tmp/
+*.tmp
+/temp_*.html
+
+# Build and coverage
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+
+# Cache directories
+.cache/
+.eslintcache
+
+# Artifacts and reports
+/playwright-report/
+/test-results/
+/blob-report/
+/allure-results/
+/allure-report/

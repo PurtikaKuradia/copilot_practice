@@ -1,4 +1,5 @@
-{"url" : "http://49.249.28.218:8081/TestServer/Build/Small_CRM/",
+{
+    "url" : "http://49.249.28.218:8081/TestServer/Build/Small_CRM/",
     "name":"leonard",
     "email":"leonard@gmail.com",
     "password": "1234",

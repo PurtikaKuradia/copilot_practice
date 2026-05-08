@@ -43,7 +43,7 @@ test.only("dialogs using page.once()", async ({page})=>{
        await page.waitForTimeout(2000)
     await page.getByRole("button", {name:"Confirmation Alert"}).click()
       await page.waitForTimeout(2000)
-    await page.once("dialog", async (dialog)=>{dialog.accept("handled")})
+     page.once("dialog", async (dialog)=>{dialog.accept("handled")})
       await page.getByRole("button", {name: "Prompt Alert"}).click()
         await page.waitForTimeout(2000)
       await page.reload()

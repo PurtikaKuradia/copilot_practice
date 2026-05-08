@@ -88,7 +88,7 @@ test.only("drag and drop",async ({page})=>{
     //     await page.mouse.down()
     //       await page.waitForTimeout(2000)
     // let box =  await page.locator('//div[text()="Mobile Accessories"]/parent::div').boundingBox()
-    // await page.mouse.move(box.x, box.y)
+    //await page.mouse.move(box.x, box.y)
     // await page.mouse.up()
     //   await page.waitForTimeout(2000)
 
