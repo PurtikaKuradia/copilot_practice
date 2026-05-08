@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(name: 'TEST_TYPE', choices: ['smoke', 'regression', 'all'], description: 'Select test type to run')
+    }
+
     options {
         timeout(time: 1, unit: 'HOURS')
         timestamps()
@@ -22,13 +26,52 @@ pipeline {
             }
         }
 
-        stage('Run Playwright Tests') {
+        stage('Run Smoke Tests') {
+            when {
+                anyOf {
+                    expression { params.TEST_TYPE == 'smoke' }
+                    expression { params.TEST_TYPE == 'all' }
+                }
+            }
             steps {
-                echo '========== Executing Playwright tests =========='
+                echo '========== Executing Smoke Tests =========='
                 catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
                     bat '''
                         set CI=true
-                        npm test
+                        npx playwright test --project=chromium-smoke --grep "@smoke"
+                    '''
+                }
+            }
+        }
+
+        stage('Run Regression Tests') {
+            when {
+                anyOf {
+                    expression { params.TEST_TYPE == 'regression' }
+                    expression { params.TEST_TYPE == 'all' }
+                }
+            }
+            steps {
+                echo '========== Executing Regression Tests =========='
+                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+                    bat '''
+                        set CI=true
+                        npx playwright test --project=chromium-regression --grep "@regression"
+                    '''
+                }
+            }
+        }
+
+        stage('Run All Tests') {
+            when {
+                expression { params.TEST_TYPE == 'all' }
+            }
+            steps {
+                echo '========== Executing All Tests =========='
+                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+                    bat '''
+                        set CI=true
+                        npx playwright test
                     '''
                 }
             }
@@ -57,7 +100,7 @@ pipeline {
                     allure-results/**,
                     test-results/**,
                     screenshot/**
-                ''', 
+                ''',
                 allowEmptyArchive: true,
                 onlyIfSuccessful: false
             }
@@ -101,17 +144,33 @@ pipeline {
                 ]
             )
         }
-        
+
         success {
             echo '========== Pipeline executed successfully =========='
-            echo 'All Playwright tests passed!'
+            script {
+                if (params.TEST_TYPE == 'smoke') {
+                    echo 'Smoke tests passed!'
+                } else if (params.TEST_TYPE == 'regression') {
+                    echo 'Regression tests passed!'
+                } else {
+                    echo 'All tests passed!'
+                }
+            }
         }
-        
+
         unstable {
             echo '========== Pipeline completed with test failures =========='
-            echo 'Some tests failed. Check the reports for details.'
+            script {
+                if (params.TEST_TYPE == 'smoke') {
+                    echo 'Some smoke tests failed. Check the reports for details.'
+                } else if (params.TEST_TYPE == 'regression') {
+                    echo 'Some regression tests failed. Check the reports for details.'
+                } else {
+                    echo 'Some tests failed. Check the reports for details.'
+                }
+            }
         }
-        
+
         failure {
             echo '========== Pipeline execution failed =========='
             echo 'Check logs for errors in setup or execution phases.'

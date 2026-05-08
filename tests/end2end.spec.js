@@ -7,7 +7,7 @@ import homePage from "../PageObjectModel/homePage.page.js"
 import loginPage from "../PageObjectModel/loginPage.page.js"
 import end2end from "../testData/end2end.json"
 
-test("End to end scenario", async ({page})=>{
+test("End to end scenario @regression", async ({page})=>{
     let url = end2end.url
     let name = end2end.name
     let email = end2end.email

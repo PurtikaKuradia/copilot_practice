@@ -1,7 +1,7 @@
 import {test} from "@playwright/test"
 import loginPage from "../PageObjectModel/loginPage.page.js"
 import singleSetdata from "../testData/singleSetdata.json"
-test("Page Object Model", async ({page})=>{
+test("Page Object Model @smoke", async ({page})=>{
     let url = singleSetdata.url
     let username = singleSetdata.username
     let password = singleSetdata.password

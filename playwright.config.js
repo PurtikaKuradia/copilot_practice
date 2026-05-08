@@ -54,8 +54,23 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    }
-    
+    },
+
+    // Smoke tests - run on all browsers
+    {
+      name: 'chromium-smoke',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/*.spec.js',
+      grep: /@smoke/,
+    },
+
+    // Regression tests - run on all browsers
+    {
+      name: 'chromium-regression',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/*.spec.js',
+      grep: /@regression/,
+    },
 
     // {
     //   name: 'firefox',
